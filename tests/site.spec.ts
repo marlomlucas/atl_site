@@ -2,6 +2,11 @@ import { readFile } from 'node:fs/promises';
 import { test, expect, type Page } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
+test.beforeEach(async ({ page }) => {
+  // Site interactions must stay independent of the automatically loaded vendor.
+  await page.route('https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js', route => route.abort('failed'));
+});
+
 async function openBrief(page: Page) {
   const opener = page.locator('.brief-open').first();
   await opener.click();

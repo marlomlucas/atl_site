@@ -93,6 +93,24 @@ const tabs = [
           hidden={id !== "moedas"}
           data-market-panel={id}
         >
+          <div class="market-terminal-bar">
+            <span class="market-terminal-name">
+              <span class="market-terminal-mark" aria-hidden="true"></span>
+              ATL / MERCADOS
+            </span>
+            <div
+              class="market-direction-legend"
+              role="group"
+              aria-label="Legenda de variação"
+            >
+              <span class="market-direction-up">
+                <span aria-hidden="true">▲</span> Alta
+              </span>
+              <span class="market-direction-down">
+                <span aria-hidden="true">▼</span> Baixa
+              </span>
+            </div>
+          </div>
           <div class="radar-panel-heading">
             <div>
               <h3>{panel.title}</h3>
@@ -102,21 +120,56 @@ const tabs = [
           </div>
           <div class="radar-market-area">
             <div class="radar-market-state" data-market-state>
-              <span class="radar-empty-icon" aria-hidden="true">
-                <svg width="48" height="36" viewBox="0 0 48 36" fill="none">
-                  <path
-                    d="M1 35h46M5 27l10-9 9 4L42 3m-10 0h10v10"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  />
-                </svg>
-              </span>
-              <p data-market-status role="status" aria-live="polite">
-                Consulte os indicadores no painel de mercado.
-              </p>
-              <button type="button" class="radar-load" data-load-market={id}>
-                Carregar cotações <Arrow />
-              </button>
+              <table class="market-instruments">
+                <caption>
+                  Instrumentos selecionados · valores consultados no provedor
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Ativo</th>
+                    <th scope="col">Cotação</th>
+                    <th scope="col">Variação</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {panel.groups
+                    .flatMap((group) =>
+                      group.symbols.map((instrument) =>
+                        String(instrument.displayName),
+                      ),
+                    )
+                    .map((label) => (
+                      <tr>
+                        <th scope="row">{label}</th>
+                        <td aria-label="Cotação ainda não recebida">—</td>
+                        <td aria-label="Variação ainda não recebida">—</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+              <div class="market-console-message">
+                <span class="radar-empty-icon" aria-hidden="true">
+                  <svg width="36" height="28" viewBox="0 0 48 36" fill="none">
+                    <path
+                      d="M1 35h46M5 27l10-9 9 4L42 3m-10 0h10v10"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                </span>
+                <p data-market-status role="status" aria-live="polite">
+                  Consultando preços e variações no TradingView. Os traços
+                  indicam valores ainda não recebidos.
+                </p>
+                <button
+                  type="button"
+                  class="radar-load"
+                  data-load-market={id}
+                  hidden
+                >
+                  Tentar novamente <Arrow />
+                </button>
+              </div>
             </div>
             <div class="radar-widget-slot" data-widget-slot hidden></div>
           </div>

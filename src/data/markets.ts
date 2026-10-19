@@ -80,7 +80,8 @@ export function marketWidgetConfig(id: MarketPanelId) {
     height: "100%",
     symbolsGroups: MARKET_PANELS[id].groups,
     showSymbolLogo: true,
-    isTransparent: true,
+    isTransparent: false,
+    backgroundColor: "#080d0a",
     colorTheme: "dark",
     locale: "br",
   };

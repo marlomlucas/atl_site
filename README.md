@@ -37,7 +37,7 @@ O Playwright inicia o servidor automaticamente quando necessário. As verificaç
 - **CSS responsivo:** layout fluido, pontos de quebra para celular/tablet/desktop, foco visível e respeito a movimento reduzido.
 - **Manrope + Inter:** fontes variáveis locais, somente o subconjunto latino. Não há solicitações ao Google Fonts durante a navegação.
 - **Playwright + axe:** fluxo de navegação, menu, perguntas frequentes, diálogo, download e verificações automáticas de acessibilidade.
-- **Sem analytics próprio ou formulário remoto:** o Radar carrega serviços externos apenas quando solicitado. TradingView e MET Norway recebem as requisições necessárias ao painel/previsão; o site não envia o resumo do projeto a esses fornecedores.
+- **Sem analytics próprio ou formulário remoto:** o painel inicial de cotações do TradingView carrega automaticamente ao abrir a página. Os demais painéis carregam ao selecionar suas abas; a previsão de MET Norway carrega ao selecionar Tempo. O site não envia o resumo do projeto a esses fornecedores.
 
 ## Radar do dia
 

@@ -93,6 +93,79 @@
 .radar-panel:focus-visible {
   outline-offset: -5px;
 }
+/* Exchange-board styling stays inside the three financial panels. */
+.radar-panel[data-market-panel] {
+  --bg: #080d0a;
+  --surface: #101a13;
+  --surface-subtle: #15221a;
+  --surface-hover: #1b2a20;
+  --text: #e6f1e8;
+  --muted: #b1c3b6;
+  --green: #66f28a;
+  --green-hover: #91ffa9;
+  --gold: #e8c780;
+  --ink: #07150b;
+  --line: #354d3c;
+  --control-border: #7f9f88;
+  --focus: #c3ff84;
+  --radar-secondary: #15221a;
+  --radar-widget-bg: #080d0a;
+  --radar-widget-link: #66f28a;
+  --market-down: #ff7e75;
+  --market-font: "Consolas", "SFMono-Regular", "Liberation Mono", monospace;
+  background: var(--bg);
+  color: var(--text);
+  color-scheme: dark;
+}
+.market-terminal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px 24px;
+  padding-bottom: 18px;
+  margin-bottom: 26px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--market-font);
+  font-size: 13px;
+  line-height: 1.6;
+  letter-spacing: 1px;
+}
+.market-terminal-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--green);
+  font-weight: 700;
+}
+.market-terminal-mark {
+  width: 13px;
+  height: 13px;
+  background: radial-gradient(circle, currentColor 1.5px, transparent 1.8px);
+  background-size: 5px 5px;
+}
+.market-direction-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  text-transform: uppercase;
+}
+.market-direction-up {
+  color: var(--green);
+}
+.market-direction-down {
+  color: var(--market-down);
+}
+[data-market-panel] .radar-panel-heading h3 {
+  font-family: var(--market-font);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+[data-market-panel] .radar-provider {
+  font-family: var(--market-font);
+}
 .radar-panel-heading {
   display: flex;
   align-items: flex-start;
@@ -126,27 +199,83 @@
 .radar-market-area {
   background: var(--bg);
   border: 1px solid var(--line);
-  border-radius: 6px;
+  border-radius: 4px;
   overflow: hidden;
 }
 .radar-market-state {
-  min-height: 245px;
-  padding: 35px 20px;
+  background: var(--bg);
+}
+.market-instruments {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-family: var(--market-font);
+  font-variant-numeric: tabular-nums;
+}
+.market-instruments caption {
+  padding: 16px 20px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+.market-instruments thead {
+  background: var(--surface-subtle);
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.market-instruments th,
+.market-instruments td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+.market-instruments th:first-child {
+  width: 56%;
+  text-align: left;
+}
+.market-instruments tbody th {
+  color: var(--green);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+.market-instruments tbody td {
+  color: var(--muted);
+  font-size: 24px;
+  line-height: 1.3;
+}
+.market-instruments tbody tr:nth-child(odd) {
+  background: var(--surface);
+}
+.market-instruments tbody tr:nth-child(even) {
+  background: var(--bg);
+}
+.market-console-message {
+  padding: 24px 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 18px;
-  text-align: center;
+  gap: 20px;
+  background-color: var(--surface-subtle);
+  background-image: radial-gradient(#66f28a0c 1px, transparent 1px);
+  background-size: 6px 6px;
 }
 .radar-empty-icon {
-  color: var(--gold);
+  color: var(--green);
 }
 .radar-market-state p {
   color: var(--muted);
   font-size: 16px;
-  max-width: 470px;
+  flex: 1;
+  min-width: 0;
   line-height: 1.8;
+}
+.market-console-message .radar-load {
+  flex-shrink: 0;
 }
 .radar-load {
   display: inline-flex;
@@ -178,16 +307,26 @@
   width: 16px;
   height: 16px;
 }
-/* Only the provider frame and its attribution retain a dark surround. */
+/* The provider keeps control of the typography and prices inside its iframe. */
 .radar-widget-slot {
-  height: 450px;
+  height: 340px;
   padding: 5px;
   background: var(--radar-widget-bg);
   color: #f4f7ee;
   color-scheme: dark;
 }
+[data-market-panel="moedas"] .radar-widget-slot {
+  height: 280px;
+}
 [data-market-panel="commodities"] .radar-widget-slot {
-  height: 530px;
+  height: 460px;
+}
+.radar-widget-slot iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: var(--radar-widget-bg);
 }
 .radar-widget-slot .tradingview-widget-container {
   height: 100%;
@@ -407,6 +546,15 @@
   .radar-panel {
     padding: 25px;
   }
+  .market-console-message {
+    flex-wrap: wrap;
+  }
+  .market-console-message p {
+    flex-basis: calc(100% - 56px);
+  }
+  .market-console-message .radar-load {
+    margin-left: 56px;
+  }
   .radar-weather-card {
     padding: 16px;
   }
@@ -473,9 +621,46 @@
     display: inline-block;
     margin-top: 16px;
   }
-  .radar-market-state {
-    min-height: 260px;
-    padding: 24px 16px;
+  .market-terminal-bar {
+    gap: 10px;
+    margin-bottom: 22px;
+    font-size: 12px;
+  }
+  .market-direction-legend {
+    gap: 16px;
+  }
+  .market-instruments caption {
+    padding: 14px 12px;
+    font-size: 12px;
+  }
+  .market-instruments th,
+  .market-instruments td {
+    padding: 14px 7px;
+  }
+  .market-instruments th:first-child {
+    width: 44%;
+  }
+  .market-instruments thead {
+    font-size: 11px;
+    letter-spacing: 0;
+  }
+  .market-instruments tbody th {
+    font-size: 14px;
+  }
+  .market-instruments tbody td {
+    font-size: 22px;
+  }
+  .market-console-message {
+    padding: 22px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .market-console-message p {
+    flex-basis: auto;
+  }
+  .market-console-message .radar-load {
+    margin-left: 0;
   }
   .radar-load {
     gap: 10px;

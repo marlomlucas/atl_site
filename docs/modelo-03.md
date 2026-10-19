@@ -11,7 +11,7 @@ Esta é a direção visual atual da ATL Soluções em Tecnologia. A composição
 | Cabeçalho, navegação e menu móvel | Escuro; a marca e os controles mantêm leitura sobre o fundo verde escuro |
 | Hero e ilustração conceitual | Escuro; dourado nos destaques e verde nas ações |
 | Faixa de apresentação após o hero | Claro; transição para as áreas de consulta e conteúdo |
-| Radar do dia | Claro na interface externa, abas, previsão, mensagens e controles; o widget financeiro pode continuar escuro |
+| Radar do dia | Claro na área externa, abas e previsão; os painéis financeiros usam um quadro escuro inspirado em bolsa, conforme a revisão em [Radar do dia](radar-do-dia.md#visual-das-cotações) |
 | Soluções e serviços | Claro; cartões brancos e destaque sem reduzir o contraste do texto |
 | Abordagem/processo | Escuro; continuidade da identidade entre as áreas claras |
 | Empresa e fundador | Claro; o cartão dos aproximadamente 20 anos de experiência do fundador permanece escuro |
@@ -88,7 +88,7 @@ A revisão responsiva deve considerar de 320 px ao desktop, com atenção a e-ma
 
 ## Radar e dados locais
 
-A mudança trata da interface externa do Radar. Preservam-se TradingView, MET Norway, Porto Alegre (RS) como cidade inicial, troca de cidade, cache no navegador, carregamento mediante interação e atribuições. Não são criadas cotações nem previsões para preencher estados vazios.
+A mudança preserva TradingView, MET Norway, Porto Alegre (RS) como cidade inicial, troca de cidade, cache no navegador e atribuições. O painel inicial de cotações carrega automaticamente; os demais carregam ao selecionar a aba. O widget financeiro recebe configuração própria de fundo escuro opaco, conforme [Radar do dia](radar-do-dia.md#visual-das-cotações). Não são criadas cotações nem previsões para preencher estados vazios.
 
 O painel incorporado do TradingView pode continuar escuro dentro de um contêiner visualmente integrado à seção clara. Não se tenta alterar o conteúdo interno dos iframes de terceiros. Rótulos, moedas, unidades, horários, indicação de contratos futuros, links das fontes e mensagens de indisponibilidade permanecem necessários.
 

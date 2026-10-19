@@ -42,7 +42,7 @@ function loadMarket(id: MarketPanelId) {
   state.hidden = false;
   status.textContent = "Consultando o painel do TradingView…";
   button.disabled = true;
-  button.textContent = "Carregando…";
+  button.hidden = true;
 
   const container = document.createElement("div");
   container.className = "tradingview-widget-container";
@@ -76,6 +76,7 @@ function loadMarket(id: MarketPanelId) {
       "O painel não está disponível agora. Você pode tentar novamente ou consultar as cotações na fonte abaixo.";
     button.disabled = false;
     button.textContent = "Tentar novamente";
+    button.hidden = false;
   };
   const timeout = window.setTimeout(fail, 15_000);
   script.addEventListener("error", fail, { once: true });
@@ -97,6 +98,7 @@ function loadMarket(id: MarketPanelId) {
       state.hidden = true;
       slot.hidden = false;
       button.disabled = false;
+      button.hidden = true;
     },
     { once: true },
   );
@@ -290,3 +292,11 @@ tabs.forEach((tab, index) => {
     activateTab(tabs[next], true);
   });
 });
+
+// Start the visible market panel immediately; other panels load on selection.
+const initialMarket = tabs.find(
+  (tab) => tab.getAttribute("aria-selected") === "true",
+)?.dataset.radarTab;
+if (initialMarket && initialMarket in MARKET_PANELS) {
+  loadMarket(initialMarket as MarketPanelId);
+}

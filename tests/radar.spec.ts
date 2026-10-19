@@ -101,16 +101,16 @@ test('abas usam seleção única e navegação por setas, Home e End', async ({ 
   }
 });
 
-test('mercados carregam sob ação e enviam os instrumentos corretos ao widget', async ({ page }) => {
+test('mercados carregam automaticamente e enviam os instrumentos corretos ao widget', async ({ page }) => {
   let requests = 0;
   await page.route(MARKET_SCRIPT, async route => {
     requests++;
     await fulfillMarket(route);
   });
   await page.goto('/');
-  await page.waitForLoadState('networkidle');
-  expect(requests).toBe(0);
-  await expect(page.locator('#radar iframe')).toHaveCount(0);
+  await expect(page.locator('#radar iframe')).toHaveCount(1);
+  expect(requests).toBe(1);
+  await expect(page.locator('#radar').getByRole('button', { name: 'Carregar cotações', exact: true })).toHaveCount(0);
 
   const panels = [
     { label: 'Moedas', title: 'Moedas em reais', symbols: ['FX_IDC:USDBRL', 'FX_IDC:EURBRL', 'FX_IDC:CLPBRL'] },
@@ -119,16 +119,16 @@ test('mercados carregam sob ação e enviam os instrumentos corretos ao widget',
   ];
   for (const [index, expected] of panels.entries()) {
     const panel = page.getByRole('tabpanel', { name: expected.label, exact: true });
-    if (index === 0) await panel.getByRole('button', { name: 'Carregar cotações', exact: true }).click();
-    else await page.locator('#radar').getByRole('tab', { name: expected.label, exact: true }).click();
+    if (index > 0) await page.locator('#radar').getByRole('tab', { name: expected.label, exact: true }).click();
     const iframe = panel.locator('iframe');
     await expect(iframe).toBeVisible();
     await expect(iframe).toHaveAttribute('src', 'about:blank');
     await expect(iframe).toHaveAttribute('title', `Painel TradingView — ${expected.title}`);
     const config = JSON.parse((await iframe.getAttribute('data-widget-config'))!);
-    expect(config).toMatchObject({ width: '100%', height: '100%', locale: 'br', colorTheme: 'dark', isTransparent: true });
+    expect(config).toMatchObject({ width: '100%', height: '100%', locale: 'br', colorTheme: 'dark', isTransparent: false, backgroundColor: '#080d0a' });
     expect(config.symbolsGroups.flatMap((group: { symbols: Array<{ name: string }> }) => group.symbols.map(symbol => symbol.name))).toEqual(expected.symbols);
     await expect(panel.locator('[data-market-state]')).toBeHidden();
+    await expect(panel.locator('[data-load-market]')).toBeHidden();
     expect(requests).toBe(index + 1);
   }
   await expect(page.getByRole('link', { name: 'Consultar na SGX', exact: true })).toHaveAttribute('href', 'https://www.sgx.com/derivatives/products/iron-ore');
@@ -146,8 +146,8 @@ test('falha do mercado exibe fonte e permite tentar novamente sem duplicar widge
   });
   await page.goto('/');
   const panel = page.getByRole('tabpanel', { name: 'Moedas', exact: true });
-  await panel.getByRole('button', { name: 'Carregar cotações', exact: true }).click();
   await expect(panel.getByRole('status')).toContainText('O painel não está disponível agora');
+  expect(attempts).toBe(1);
   await expect(panel.locator('iframe')).toHaveCount(0);
   await expect(panel.getByRole('link', { name: 'Cotações por TradingView', exact: true })).toHaveAttribute('href', 'https://br.tradingview.com/markets/currencies/');
   const retry = panel.getByRole('button', { name: 'Tentar novamente', exact: true });
@@ -256,7 +256,7 @@ for (const width of [320, 360, 390, 768, 960, 1024, 1440]) {
     await expectNoRadarOverflow(page);
     for (const label of ['Moedas', 'Criptomoedas', 'Commodities e minérios']) {
       mountWidget = false;
-      await page.locator('#radar').getByRole('tab', { name: label, exact: true }).click();
+      if (label !== 'Moedas') await page.locator('#radar').getByRole('tab', { name: label, exact: true }).click();
       const panel = page.getByRole('tabpanel', { name: label, exact: true });
       await expect(panel.getByRole('button', { name: 'Tentar novamente', exact: true })).toBeVisible();
       await expectNoRadarOverflow(page);
@@ -275,7 +275,6 @@ for (const width of [320, 360, 390, 768, 960, 1024, 1440]) {
 test('radar atende às verificações automáticas WCAG 2 AA no tempo e fallback de mercado', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 900 });
   await page.goto('/');
-  await page.getByRole('tabpanel', { name: 'Moedas', exact: true }).getByRole('button', { name: 'Carregar cotações', exact: true }).click();
   await expect(page.locator('#radar-panel-moedas').getByRole('status')).toContainText('O painel não está disponível agora');
   const fallback = await new AxeBuilder({ page }).include('#radar').withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
   expect(fallback.violations).toEqual([]);
