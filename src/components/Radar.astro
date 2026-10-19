@@ -1,0 +1,260 @@
+---
+import Arrow from "./Arrow.astro";
+import { MARKET_PANELS } from "../data/markets";
+import { WEATHER_CITIES } from "../lib/weather";
+import "../styles/radar.css";
+
+const tabs = [
+  {
+    id: "moedas",
+    label: "Moedas",
+    icon: "M16 3v26m6-20h-9a5 5 0 0 0 0 10h6a5 5 0 0 1 0 10H9",
+  },
+  {
+    id: "cripto",
+    label: "Criptomoedas",
+    icon: "M10 7h9a5 5 0 0 1 0 10H10m0 0h11a5 5 0 0 1 0 10H10M13 7v20m2-24v4m5-4v4m-5 20v4m5-4v4",
+  },
+  {
+    id: "commodities",
+    label: "Commodities e minérios",
+    icon: "m16 3 13 13-13 13L3 16 16 3Zm-13 13h26M16 3l-6 13 6 13 6-13-6-13",
+  },
+  {
+    id: "tempo",
+    label: "Tempo",
+    icon: "M16 8a8 8 0 1 0 0 16 8 8 0 0 0 0-16M16 1v3m0 24v3M1 16h3m24 0h3M5 5l2 2m18 18 2 2M5 27l2-2M25 7l2-2",
+  },
+];
+---
+
+<section id="radar" class="radar section" aria-labelledby="radar-title">
+  <div class="container">
+    <div class="radar-heading">
+      <div>
+        <p class="eyebrow">
+          <span class="live-dot"></span> RADAR DO DIA
+        </p>
+        <h2 id="radar-title">
+          O mundo se move.
+          <br />
+          <span class="muted-heading">Acompanhe por aqui.</span>
+        </h2>
+      </div>
+      <div class="radar-intro">
+        <p>
+          Um ponto de encontro para o seu dia: moedas, mercados e a previsão do
+          tempo.
+        </p>
+        <time id="radar-date"></time>
+      </div>
+    </div>
+    <div class="radar-board">
+      <div class="radar-tabs" role="tablist" aria-label="Indicadores do dia">
+        {tabs.map((tab, index) => (
+          <button
+            id={`radar-tab-${tab.id}`}
+            type="button"
+            role="tab"
+            aria-controls={`radar-panel-${tab.id}`}
+            aria-selected={index === 0 ? "true" : "false"}
+            tabindex={index === 0 ? 0 : -1}
+            data-radar-tab={tab.id}
+          >
+            <span class="radar-tab-icon" aria-hidden="true">
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 32 32"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d={tab.icon} />
+              </svg>
+            </span>
+            {tab.label}
+          </button>
+        ))}
+      </div>
+      {Object.entries(MARKET_PANELS).map(([id, panel]) => (
+        <div
+          id={`radar-panel-${id}`}
+          class="radar-panel"
+          role="tabpanel"
+          aria-labelledby={`radar-tab-${id}`}
+          tabindex="0"
+          hidden={id !== "moedas"}
+          data-market-panel={id}
+        >
+          <div class="radar-panel-heading">
+            <div>
+              <h3>{panel.title}</h3>
+              <p>{panel.description}</p>
+            </div>
+            <span class="radar-provider">TRADINGVIEW</span>
+          </div>
+          <div class="radar-market-area">
+            <div class="radar-market-state" data-market-state>
+              <span class="radar-empty-icon" aria-hidden="true">
+                <svg width="48" height="36" viewBox="0 0 48 36" fill="none">
+                  <path
+                    d="M1 35h46M5 27l10-9 9 4L42 3m-10 0h10v10"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  />
+                </svg>
+              </span>
+              <p data-market-status role="status" aria-live="polite">
+                Consulte os indicadores no painel de mercado.
+              </p>
+              <button type="button" class="radar-load" data-load-market={id}>
+                Carregar cotações <Arrow />
+              </button>
+            </div>
+            <div class="radar-widget-slot" data-widget-slot hidden></div>
+          </div>
+          <div class="radar-market-footer">
+            <p>
+              Horário, variação e eventuais atrasos são informados pelo
+              provedor. A disponibilidade varia por instrumento.
+            </p>
+            <a href={panel.sourceUrl} target="_blank" rel="noopener noreferrer">
+              Cotações por TradingView <Arrow diagonal />
+            </a>
+          </div>
+          {id === "commodities" && (
+            <div class="radar-iron">
+              <div>
+                <span class="radar-iron-label">MINÉRIO DE FERRO</span>
+                <p>
+                  Consulte os contratos e índices diretamente na bolsa de
+                  referência.
+                </p>
+              </div>
+              <a
+                href="https://www.sgx.com/derivatives/products/iron-ore"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Consultar na SGX <Arrow diagonal />
+              </a>
+            </div>
+          )}
+        </div>
+      ))}
+      <div
+        id="radar-panel-tempo"
+        class="radar-panel"
+        role="tabpanel"
+        aria-labelledby="radar-tab-tempo"
+        tabindex="0"
+        hidden
+      >
+        <div class="radar-panel-heading radar-weather-heading">
+          <div>
+            <h3>O tempo para os seus planos</h3>
+            <p>
+              Previsão de temperatura e vento para as próximas horas. Horários
+              locais da cidade selecionada.
+            </p>
+          </div>
+          <div class="radar-city-field">
+            <label for="radar-city">Sua cidade</label>
+            <select id="radar-city">
+              {WEATHER_CITIES.map((city) => (
+                <option value={city.id}>{city.name}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <div class="radar-weather-status">
+          <p id="radar-weather-status" role="status" aria-live="polite">
+            Escolha a cidade para consultar a previsão.
+          </p>
+          <button
+            type="button"
+            id="radar-weather-retry"
+            class="radar-load"
+            hidden
+          >
+            Tentar novamente <Arrow />
+          </button>
+        </div>
+        <div
+          id="radar-weather-periods"
+          class="radar-weather-periods"
+          aria-label="Previsão das próximas horas"
+          hidden
+        ></div>
+        <div class="radar-weather-footer">
+          <p>
+            Dados de{" "}
+            <a
+              href="https://www.met.no/en"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              MET Norway
+            </a>{" "}
+            ·{" "}
+            <a
+              href="https://creativecommons.org/licenses/by/4.0/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              CC BY 4.0
+            </a>
+            <br />
+            <span id="radar-weather-updated">
+              A previsão pode mudar ao longo do dia.
+            </span>
+          </p>
+          <a
+            href="https://www.yr.no/en"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Consultar no Yr <Arrow diagonal />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="radar-bottom">
+      <p>
+        <span class="radar-bottom-mark" aria-hidden="true">
+          +
+        </span>{" "}
+        Informação para sua rotina. Tecnologia para seus próximos passos.
+      </p>
+      <a href="#solucoes">
+        Conheça a ATL <Arrow diagonal />
+      </a>
+    </div>
+    <noscript>
+      <p class="radar-noscript">
+        Para abrir os painéis nesta página, ative o JavaScript. Você também pode
+        consultar as fontes:{" "}
+        <a
+          href="https://br.tradingview.com/markets/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          TradingView
+        </a>{" "}
+        e{" "}
+        <a
+          href="https://www.yr.no/en"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Yr
+        </a>
+        .
+      </p>
+    </noscript>
+  </div>
+</section>
+<script src="../scripts/radar.ts"></script>

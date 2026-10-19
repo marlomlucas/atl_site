@@ -1,0 +1,136 @@
+---
+import Arrow from "./Arrow.astro";
+---
+
+<div class="hero-visual" aria-hidden="true">
+  <div class="visual-topline">
+    <span class="live-dot"></span> IDEIAS EM MOVIMENTO{" "}
+    <span class="visual-cross">+</span>
+  </div>
+  <div class="visual-orbit orbit-one"></div>
+  <div class="visual-orbit orbit-two"></div>
+  <div class="visual-axis axis-x"></div>
+  <div class="visual-axis axis-y"></div>
+  <svg class="architecture" viewBox="0 0 520 470" fill="none">
+    <defs>
+      <linearGradient
+        id="faceTop"
+        x1="140"
+        y1="130"
+        x2="360"
+        y2="260"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#F0D69A" stop-opacity=".95" />
+        <stop offset="1" stop-color="#B78A43" stop-opacity=".45" />
+      </linearGradient>
+      <linearGradient
+        id="faceLeft"
+        x1="140"
+        y1="180"
+        x2="260"
+        y2="350"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#A17A3D" stop-opacity=".65" />
+        <stop offset="1" stop-color="#372E1D" stop-opacity=".25" />
+      </linearGradient>
+      <linearGradient
+        id="faceRight"
+        x1="380"
+        y1="170"
+        x2="260"
+        y2="350"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#D2AE68" stop-opacity=".9" />
+        <stop offset="1" stop-color="#6B532A" stop-opacity=".4" />
+      </linearGradient>
+      <linearGradient
+        id="edge"
+        x1="140"
+        y1="110"
+        x2="370"
+        y2="350"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#F8DFAB" />
+        <stop offset="1" stop-color="#AD8443" />
+      </linearGradient>
+    </defs>
+    <g stroke="#8A9E84" stroke-opacity=".2" stroke-width=".7">
+      <path d="m70 319 190-110 190 110-190 110zM110 342l190-110M150 365l190-110M190 388l190-110M230 411l190-110M110 296l190 110M150 273l190 110M190 250l190 110M230 227l190 110" />
+    </g>
+    <path
+      class="cube-shadow"
+      d="m159 327 101-58 101 58-101 58z"
+      fill="#D4AD61"
+      opacity=".09"
+    />
+    <g class="floating-cube">
+      <path
+        d="m148 176 112-65 112 65-112 65z"
+        fill="url(#faceTop)"
+        stroke="url(#edge)"
+        stroke-width="1.2"
+      />
+      <path
+        d="m148 176 112 65v129l-112-65z"
+        fill="url(#faceLeft)"
+        stroke="url(#edge)"
+        stroke-width="1.2"
+      />
+      <path
+        d="m260 241 112-65v129l-112 65z"
+        fill="url(#faceRight)"
+        stroke="url(#edge)"
+        stroke-width="1.2"
+      />
+      <path
+        d="m148 176 112-65 112 65M260 241v129"
+        stroke="#F6DFAF"
+        stroke-width="1.5"
+      />
+      <path
+        d="m181 177 79-45 79 45-79 46z"
+        stroke="#F8E2B4"
+        stroke-opacity=".5"
+      />
+      <g
+        stroke="#F5E5C4"
+        stroke-width="3.5"
+        stroke-linecap="square"
+        stroke-linejoin="miter"
+      >
+        <path d="m190 233-17 1 17 21M230 256l17 21-17 1M219 237l-15 39" />
+      </g>
+      <path
+        d="m292 264 48-28M292 277l30-17M292 290l48-28"
+        stroke="#2C2F21"
+        stroke-width="3"
+        stroke-opacity=".55"
+      />
+    </g>
+    <g
+      stroke="#A8CA8B"
+      stroke-width="1"
+      stroke-opacity=".65"
+      stroke-dasharray="3 5"
+    >
+      <path d="M143 255H77v-90H43M376 238h51v78h46" />
+    </g>
+    <circle cx="143" cy="255" r="3" fill="#B2E46E" />
+    <circle cx="376" cy="238" r="3" fill="#B2E46E" />
+    <circle cx="260" cy="69" r="3" fill="#DFBD77" />
+  </svg>
+  <div class="visual-tag tag-idea">
+    <span>01</span> SUA IDEIA
+  </div>
+  <div class="visual-tag tag-solution">
+    <span class="live-dot"></span> UMA SOLUÇÃO REAL
+  </div>
+  <div class="visual-footer">
+    <span>ESTRATÉGIA + CÓDIGO + PROPÓSITO</span>
+    <Arrow diagonal />
+  </div>
+</div>

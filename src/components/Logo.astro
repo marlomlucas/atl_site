@@ -1,0 +1,31 @@
+---
+import { company } from "../data/company";
+
+interface Props {
+  small?: boolean;
+}
+const { small = false } = Astro.props;
+---
+
+<span class:list={["brand", { "brand--small": small }]}>
+  <svg
+    class="brand-symbol"
+    width="40"
+    height="36"
+    viewBox="0 0 40 36"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="m11 10-9 8 9 8M29 10l9 8-9 8M24 3l-9 30"
+      stroke="currentColor"
+      stroke-width="3.2"
+      stroke-linecap="square"
+      stroke-linejoin="miter"
+    />
+  </svg>
+  <span class="brand-wordmark">
+    <span class="brand-name">{company.shortName}</span>
+    <span class="brand-tagline">{company.tagline}</span>
+  </span>
+</span>

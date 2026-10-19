@@ -1,0 +1,584 @@
+---
+import "../styles/global.css";
+import Logo from "../components/Logo.astro";
+import Arrow from "../components/Arrow.astro";
+import HeroVisual from "../components/HeroVisual.astro";
+import Radar from "../components/Radar.astro";
+import { company, whatsappUrl } from "../data/company";
+
+const emailOverride = import.meta.env.PUBLIC_CONTACT_EMAIL?.trim();
+const contactEmail =
+  emailOverride && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailOverride)
+    ? emailOverride
+    : company.email;
+const emailUrl = `mailto:${contactEmail}?subject=${encodeURIComponent("Vamos conversar sobre um projeto — ATL")}`;
+const services = [
+  {
+    number: "01",
+    icon: "code",
+    title: "Sistemas sob medida",
+    text: "Seu negócio tem um jeito próprio de funcionar. Seu software também pode ter.",
+    tags: ["Gestão e operação", "Integrações", "Automação"],
+    featured: true,
+  },
+  {
+    number: "02",
+    icon: "window",
+    title: "Sites que conectam",
+    text: "Uma presença digital com identidade, velocidade e uma experiência que faz sentido para o seu cliente.",
+    tags: ["Sites institucionais", "Landing pages"],
+  },
+  {
+    number: "03",
+    icon: "mobile",
+    title: "Aplicativos que aproximam",
+    text: "Sua ideia nas mãos das pessoas. Experiências pensadas para simplificar o dia a dia.",
+    tags: ["Aplicativos", "Experiência do usuário"],
+  },
+  {
+    number: "04",
+    icon: "compass",
+    title: "Consultoria de TI",
+    text: "Clareza para decidir, organizar sua tecnologia e encontrar o caminho antes de investir.",
+    tags: ["Diagnóstico", "Estratégia", "Evolução"],
+  },
+];
+const steps = [
+  {
+    number: "01",
+    title: "Primeiro, entender.",
+    text: "Uma boa conversa sobre seu negócio, suas pessoas e o problema que vale a pena resolver.",
+  },
+  {
+    number: "02",
+    title: "Depois, desenhar.",
+    text: "Organizamos prioridades, definimos o escopo e combinamos um caminho claro, juntos.",
+  },
+  {
+    number: "03",
+    title: "Construir e evoluir.",
+    text: "Desenvolvimento com acompanhamento próximo, validação e espaço para os próximos passos.",
+  },
+];
+const faqs = [
+  {
+    q: "Preciso ter a ideia totalmente definida?",
+    a: "Não. Podemos começar pelo desafio que você está vivendo. A primeira etapa é entender seu contexto e transformar a necessidade em um escopo que faça sentido.",
+  },
+  {
+    q: "A ATL atende quais tipos de projeto?",
+    a: "Nosso foco é desenvolver sistemas, sites e aplicativos, além de prestar consultoria de TI. Avaliamos cada projeto para entender como podemos contribuir e quais tecnologias são adequadas.",
+  },
+  {
+    q: "Como são definidos o prazo e o investimento?",
+    a: "Depois de entender o objetivo, as funcionalidades e as integrações necessárias, elaboramos uma proposta com escopo, etapas, prazo e investimento. Cada projeto tem suas particularidades.",
+  },
+  {
+    q: "Já tenho um sistema. Podemos começar por ele?",
+    a: "Sim. A consultoria pode começar pela análise do que você já utiliza, dos pontos de dificuldade e das oportunidades de melhoria. A partir desse diagnóstico, definimos os próximos passos.",
+  },
+];
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0d100f" />
+    <meta
+      name="description"
+      content="ATL Soluções em Tecnologia: sistemas, sites, aplicativos e consultoria de TI com Marlom C. Lucas, Engenheiro de Software com 20 anos em tecnologia."
+    />
+    <meta
+      property="og:title"
+      content={`${company.name} — Boas ideias. Software à altura.`}
+    />
+    <meta property="og:site_name" content={company.name} />
+    <meta
+      property="og:description"
+      content="Desenvolvimento de software e consultoria de TI para o próximo passo da sua empresa."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{company.name} — Software, sites, aplicativos e consultoria de TI</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">
+      Pular para o conteúdo
+    </a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a
+          href="#inicio"
+          class="logo-link"
+          aria-label={`${company.name} — início`}
+        >
+          <Logo />
+        </a>
+        <nav id="main-nav" class="main-nav" aria-label="Navegação principal">
+          <a href="#solucoes">Soluções</a>
+          <a href="#radar">Radar do dia</a>
+          <a href="#abordagem">Como trabalhamos</a>
+          <a href="#sobre">Sobre a ATL</a>
+          <a href="#contato" class="nav-contact">
+            Vamos conversar <Arrow diagonal />
+          </a>
+        </nav>
+        <button
+          class="menu-toggle"
+          type="button"
+          aria-label="Abrir menu"
+          aria-controls="main-nav"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <main id="conteudo">
+      <section id="inicio" class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">
+              <span class="live-dot"></span> TECNOLOGIA COM PROPÓSITO
+            </p>
+            <h1>
+              Boas ideias.
+              <br />
+              Software
+              <br />
+              <span>à altura.</span>
+            </h1>
+            <p class="hero-description">
+              Transformamos desafios em sistemas, sites e aplicativos. Com
+              estratégia, código e gente que entende de tecnologia.
+            </p>
+            <div class="hero-actions">
+              <a href="#contato" class="button button-primary">
+                Vamos falar do seu projeto <Arrow diagonal />
+              </a>
+              <a href="#solucoes" class="text-link">
+                Explore as soluções <Arrow class="arrow-down" />
+              </a>
+            </div>
+            <div class="hero-note">
+              <span class="note-line"></span> Da primeira conversa ao próximo
+              passo.
+            </div>
+          </div>
+          <HeroVisual />
+        </div>
+        <div class="container hero-bottom">
+          <span>SOFTWARE BEM PENSADO. NEGÓCIOS EM MOVIMENTO.</span>
+          <a href="#solucoes" aria-label="Ir para soluções">
+            ROLE PARA EXPLORAR <Arrow class="arrow-down" />
+          </a>
+        </div>
+      </section>
+
+      <section class="intro-strip" aria-label="O que move a ATL">
+        <div class="container intro-inner">
+          <span class="strip-label">O QUE NOS MOVE</span>
+          <p>
+            Entender o seu mundo.
+            <br class="mobile-break" />{" "}
+            <strong>Construir o que faz diferença.</strong>
+          </p>
+          <span class="strip-star" aria-hidden="true">
+            ✳
+          </span>
+        </div>
+      </section>
+
+      <Radar />
+
+      <section id="solucoes" class="section solutions">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">
+                <span class="section-number">01 /</span> O QUE FAZEMOS
+              </p>
+              <h2>
+                Seu próximo passo.
+                <br />
+                <span class="muted-heading">Nossa próxima construção.</span>
+              </h2>
+            </div>
+            <p class="section-description">
+              Do primeiro site ao sistema que organiza sua operação. A solução
+              começa no que você precisa.
+            </p>
+          </div>
+          <div class="services-grid">
+            {services.map((service) => (
+              <a
+                href="#contato"
+                class:list={[
+                  "service-card",
+                  { "service-card--featured": service.featured },
+                ]}
+              >
+                <div class="service-card-top">
+                  <span class="service-icon" aria-hidden="true">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 32 32"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      {service.icon === "code" && (
+                        <path d="m10 10-6 6 6 6m12-12 6 6-6 6M19 5l-6 22" />
+                      )}
+                      {service.icon === "window" && (
+                        <>
+                          <rect x="3" y="5" width="26" height="22" rx="2" />
+                          <path d="M3 12h26M8 8.5h.1M12 8.5h.1m-3 10h7m-7 4h13" />
+                        </>
+                      )}
+                      {service.icon === "mobile" && (
+                        <>
+                          <rect x="8" y="2" width="16" height="28" rx="3" />
+                          <path d="M13 6h6m-4 20h2" />
+                          <path d="m12 15 3 3 5-6" />
+                        </>
+                      )}
+                      {service.icon === "compass" && (
+                        <>
+                          <circle cx="16" cy="16" r="13" />
+                          <path d="m22 10-4 8-8 4 4-8zM16 1v3m0 24v3M1 16h3m24 0h3" />
+                        </>
+                      )}
+                    </svg>
+                  </span>
+                  <span class="card-number">/{service.number}</span>
+                </div>
+                <div>
+                  <h3>{service.title}</h3>
+                  <p>{service.text}</p>
+                </div>
+                <div class="service-card-bottom">
+                  <ul class="service-tags" aria-label="Áreas de atuação">
+                    {service.tags.map((tag) => (
+                      <li>{tag}</li>
+                    ))}
+                  </ul>
+                  <span class="service-arrow">
+                    <Arrow diagonal />
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div class="solutions-footnote">
+            <span class="live-dot"></span>
+            <p>
+              A tecnologia certa é a que resolve o seu problema.{" "}
+              <span>A escolha vem depois de entender o desafio.</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="abordagem" class="section approach">
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">
+                <span class="section-number">02 /</span> COMO TRABALHAMOS
+              </p>
+              <h2>
+                Menos distância.
+                <br />
+                <span class="muted-heading">Mais construção em conjunto.</span>
+              </h2>
+            </div>
+            <p class="section-description">
+              Você conhece o seu negócio. Nós trazemos o olhar da tecnologia. O
+              melhor caminho nasce dessa troca.
+            </p>
+          </div>
+          <div class="steps-grid">
+            {steps.map((step) => (
+              <article class="step">
+                <span class="step-number">
+                  {step.number}
+                  <Arrow diagonal />
+                </span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </article>
+            ))}
+          </div>
+          <div class="approach-note">
+            <Arrow />
+            <p>
+              Conversa clara, decisões compartilhadas e tecnologia com um
+              porquê.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="sobre" class="section about">
+        <div class="container about-grid">
+          <div class="experience-panel">
+            <div class="experience-top">
+              <span>A BASE DA ATL</span>
+              <span aria-hidden="true">+</span>
+            </div>
+            <div class="experience-number">
+              20<span>anos</span>
+            </div>
+            <p>
+              de experiência do fundador
+              <br />
+              no universo da tecnologia.
+            </p>
+            <div class="experience-bottom">
+              <span class="live-dot"></span> EXPERIÊNCIA QUE ENCONTRA NOVAS
+              IDEIAS
+            </div>
+          </div>
+          <div class="about-copy">
+            <p class="eyebrow">
+              <span class="section-number">03 /</span> PRAZER, ATL
+            </p>
+            <h2>
+              Uma empresa nova.
+              <br />
+              <span class="muted-heading">Uma história que vem de longe.</span>
+            </h2>
+            <p>
+              A ATL Soluções em Tecnologia nasce da vontade de transformar
+              experiência em soluções úteis. São 20 anos de atuação do fundador
+              em tecnologia, com formação técnica em Informática e graduação em
+              Engenharia de Software.
+            </p>
+            <p>
+              Unimos essa base a um jeito próximo de trabalhar: ouvir com
+              atenção, explicar com clareza e construir com cuidado. Para que a
+              tecnologia faça sentido para quem usa e para quem empreende.
+            </p>
+            <div class="founder-signature">
+              <span class="founder-label">À FRENTE DA ATL</span>
+              <h3>{company.founder}</h3>
+              <p>
+                {company.role}
+                <br />
+                {company.specialization}
+              </p>
+              <nav
+                class="professional-links"
+                aria-label={`Perfis profissionais de ${company.founder}`}
+              >
+                <a
+                  href={company.linkedIn}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  LinkedIn <Arrow diagonal />
+                </a>
+                <a
+                  href={company.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  GitHub <Arrow diagonal />
+                </a>
+              </nav>
+            </div>
+            <a href="#contato" class="text-link gold-link">
+              Vamos construir o próximo capítulo <Arrow diagonal />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq-section" aria-labelledby="faq-title">
+        <div class="container faq-grid">
+          <div>
+            <p class="eyebrow">
+              <span class="section-number">04 /</span> ANTES DO PRIMEIRO OLÁ
+            </p>
+            <h2 id="faq-title">
+              Toda boa ideia
+              <br />
+              começa com
+              <br />
+              <span class="muted-heading">perguntas.</span>
+            </h2>
+          </div>
+          <div class="faq-list">
+            {faqs.map((faq, index) => (
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-number">0{index + 1}</span>
+                  <span>{faq.q}</span>
+                  <span class="faq-toggle" aria-hidden="true">
+                    +
+                  </span>
+                </summary>
+                <p>{faq.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contato" class="contact-section">
+        <div class="container">
+          <div class="contact-panel">
+            <div>
+              <p class="eyebrow">
+                <span class="live-dot"></span> VAMOS DAR O PRÓXIMO PASSO?
+              </p>
+              <h2>
+                Sua ideia merece
+                <br />
+                <span>sair do papel.</span>
+              </h2>
+              <p>
+                Um projeto em mente? Um processo que pode melhorar?
+                <br />
+                Você não precisa chegar com todas as respostas.
+              </p>
+            </div>
+            <div class="contact-actions">
+              <a
+                class="button button-primary"
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Conversar pelo WhatsApp <Arrow diagonal />
+              </a>
+              <a
+                class="contact-method"
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`WhatsApp ${company.phoneDisplay}`}
+              >
+                <span>WHATSAPP</span>
+                {company.phoneDisplay}
+              </a>
+              <a class="contact-method contact-email" href={emailUrl}>
+                <span>E-MAIL</span>
+                {contactEmail}
+              </a>
+              <button type="button" class="text-link brief-open">
+                Prefiro organizar minha ideia primeiro <Arrow />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-top">
+        <a
+          href="#inicio"
+          aria-label={`${company.name} — voltar ao início`}
+          class="logo-link"
+        >
+          <Logo small />
+        </a>
+        <p>
+          Tecnologia com propósito.
+          <br />
+          Construída com você.
+        </p>
+        <a href="#inicio" class="back-top" aria-label="Voltar ao topo">
+          Voltar ao topo <Arrow class="arrow-up" />
+        </a>
+      </div>
+      <div class="container footer-bottom">
+        <span>
+          © {new Date().getFullYear()} {company.name}. Todos os direitos
+          reservados.
+        </span>
+        <span>SOFTWARE · SITES · APPS · CONSULTORIA</span>
+      </div>
+    </footer>
+
+    <dialog
+      id="project-dialog"
+      class="project-dialog"
+      aria-labelledby="dialog-title"
+      aria-describedby="dialog-description"
+    >
+      <div class="dialog-inner">
+        <button
+          class="dialog-close"
+          type="button"
+          aria-label="Fechar resumo do projeto"
+        >
+          ×
+        </button>
+        <p class="eyebrow">O COMEÇO DE UMA BOA CONVERSA</p>
+        <h2 id="dialog-title">
+          Vamos organizar
+          <br />
+          <span class="muted-heading">sua ideia?</span>
+        </h2>
+        <p id="dialog-description">
+          Preencha o que você já sabe e baixe um resumo para compartilhar com a
+          ATL. As informações ficam apenas no seu navegador e não são enviadas.
+        </p>
+        <form id="project-form">
+          <label for="project-name">
+            Como você chamaria seu projeto?
+            <span class="field-hint">Pode ser só uma ideia de nome.</span>
+          </label>
+          <input
+            id="project-name"
+            name="project"
+            type="text"
+            placeholder="Ex.: um site para minha empresa"
+            maxlength="120"
+            required
+          />
+          <label for="project-type">Do que você precisa?</label>
+          <select id="project-type" name="type">
+            <option>Quero descobrir a melhor solução</option>
+            <option>Sistema sob medida</option>
+            <option>Site ou landing page</option>
+            <option>Aplicativo</option>
+            <option>Consultoria de TI</option>
+          </select>
+          <label for="project-challenge">
+            Qual desafio você quer resolver?
+          </label>
+          <textarea
+            id="project-challenge"
+            name="challenge"
+            rows="4"
+            placeholder="Conte um pouco sobre o problema, quem vai usar e o que você gostaria de melhorar."
+            maxlength="3000"
+            required
+          ></textarea>
+          <button type="submit" class="button button-primary">
+            Baixar resumo do projeto <Arrow />
+          </button>
+          <p
+            id="form-status"
+            class="form-status"
+            role="status"
+            aria-live="polite"
+          ></p>
+        </form>
+      </div>
+    </dialog>
+    <script src="../scripts/site.ts"></script>
+  </body>
+</html>

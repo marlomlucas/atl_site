@@ -1,0 +1,496 @@
+.radar {
+  border-bottom: 1px solid var(--line);
+  padding-top: 85px;
+  padding-bottom: 76px;
+}
+.radar [hidden] {
+  display: none !important;
+}
+.radar-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 33px;
+}
+.radar-heading .eyebrow {
+  color: var(--green);
+  margin-bottom: 22px;
+}
+.radar-heading h2 {
+  font-size: 40px;
+}
+.radar-intro {
+  max-width: 290px;
+}
+.radar-intro p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.radar-intro time {
+  display: block;
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 0.4px;
+  margin-top: 15px;
+  text-transform: uppercase;
+}
+.radar-board {
+  background: var(--surface);
+  border: 1px solid #46503b;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.radar-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--line);
+  background: #101511;
+}
+.radar-tabs [role="tab"] {
+  display: flex;
+  gap: 11px;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  background: transparent;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 20px 14px;
+  border-bottom: 2px solid transparent;
+  transition:
+    color 0.2s,
+    background 0.2s;
+}
+.radar-tabs [role="tab"][aria-selected="true"] {
+  background: #b2e46e08;
+  border-bottom-color: var(--green);
+  color: var(--text);
+}
+.radar-tabs [role="tab"]:hover {
+  color: var(--green);
+  background: #b2e46e08;
+}
+.radar-tabs [role="tab"]:focus-visible {
+  outline-offset: -6px;
+}
+.radar-tab-icon {
+  color: var(--gold);
+  font-family: var(--font-heading);
+  font-size: 20px;
+  line-height: 1;
+}
+.radar-panel {
+  padding: 30px;
+}
+.radar-panel:focus-visible {
+  outline-offset: -5px;
+}
+.radar-panel-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 26px;
+}
+.radar-panel-heading h3 {
+  font-size: 23px;
+}
+.radar-panel-heading p {
+  max-width: 700px;
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-top: 10px;
+}
+.radar-provider {
+  border: 1px solid #566246;
+  color: #bbc8b2;
+  padding: 7px 10px;
+  font-size: 8px;
+  letter-spacing: 1.2px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.radar-market-area {
+  background: #0f1410;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.radar-market-state {
+  min-height: 245px;
+  padding: 35px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
+  text-align: center;
+  background-image:
+    linear-gradient(#aabf8510 1px, transparent 1px),
+    linear-gradient(90deg, #aabf8510 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+.radar-empty-icon {
+  color: var(--gold);
+}
+.radar-market-state p {
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 470px;
+  line-height: 1.8;
+}
+.radar-load {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 11px 16px;
+  min-height: 44px;
+  border: 1px solid #728160;
+  border-radius: 3px;
+  font-size: 12px;
+  background: #182113;
+  color: var(--green);
+}
+.radar-load:hover {
+  border-color: var(--green);
+  background: #24321b;
+}
+.radar-load:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}
+.radar-load svg {
+  width: 16px;
+  height: 16px;
+}
+.radar-widget-slot {
+  height: 450px;
+  padding: 5px;
+}
+[data-market-panel="commodities"] .radar-widget-slot {
+  height: 530px;
+}
+.radar-widget-slot .tradingview-widget-container {
+  height: 100%;
+  width: 100%;
+}
+.radar-widget-slot .tradingview-widget-container__widget {
+  height: calc(100% - 32px);
+  width: 100%;
+}
+.radar-widget-slot .tradingview-widget-copyright {
+  font-size: 11px;
+  text-align: center;
+  padding-top: 8px;
+  line-height: 1.5;
+}
+.radar-widget-slot .tradingview-widget-copyright a {
+  color: var(--green);
+}
+.radar-market-footer,
+.radar-weather-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  margin-top: 21px;
+}
+.radar-market-footer p,
+.radar-weather-footer p {
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 660px;
+}
+.radar-market-footer > a,
+.radar-weather-footer > a,
+.radar-iron > a,
+.radar-bottom > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 40px;
+  font-size: 11px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+.radar-market-footer svg,
+.radar-weather-footer svg,
+.radar-iron svg,
+.radar-bottom svg {
+  width: 14px;
+  height: 14px;
+}
+.radar-iron {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border-top: 1px solid var(--line);
+  margin-top: 18px;
+  padding-top: 23px;
+}
+.radar-iron-label {
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 1.6px;
+}
+.radar-iron p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+  margin-top: 8px;
+}
+.radar-city-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 210px;
+}
+.radar-city-field label {
+  font-size: 11px;
+  color: var(--muted);
+}
+.radar-city-field select {
+  border: 1px solid #748364;
+  background: var(--bg);
+  color: var(--text);
+  border-radius: 3px;
+  padding: 12px;
+  max-width: 100%;
+  font-size: 13px;
+}
+.radar-weather-status {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  min-height: 48px;
+  margin-bottom: 15px;
+}
+.radar-weather-status p {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.radar-weather-periods {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.radar-weather-card {
+  padding: 22px;
+  border: 1px solid #46543b;
+  background: #101710;
+  border-radius: 4px;
+}
+.radar-weather-card time {
+  color: #b5c1ad;
+  font-size: 12px;
+  display: block;
+  line-height: 1.7;
+}
+.radar-weather-card .weather-symbol {
+  color: var(--gold);
+  height: 43px;
+  margin-top: 21px;
+}
+.radar-weather-card .weather-symbol svg {
+  width: 37px;
+  height: 37px;
+}
+.radar-weather-temperature {
+  font-family: var(--font-heading);
+  font-size: 37px;
+  letter-spacing: -1.7px;
+  margin-top: 15px;
+}
+.radar-weather-condition {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+  margin-top: 8px;
+}
+.radar-weather-wind {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.7;
+  margin-top: 18px;
+}
+.radar-weather-footer p a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.radar-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  padding-top: 20px;
+}
+.radar-bottom p {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.radar-bottom-mark {
+  color: var(--green);
+  font-size: 17px;
+  margin-right: 10px;
+}
+.radar-noscript {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+  padding-top: 18px;
+}
+.radar-noscript a {
+  color: var(--gold);
+  text-decoration: underline;
+}
+@media (max-width: 900px) {
+  .radar-heading h2 {
+    font-size: 33px;
+  }
+  .radar-intro {
+    max-width: 235px;
+  }
+  .radar-tabs [role="tab"] {
+    padding: 17px 9px;
+    font-size: 11px;
+    gap: 7px;
+  }
+  .radar-panel {
+    padding: 25px;
+  }
+  .radar-weather-card {
+    padding: 16px;
+  }
+  .radar-weather-temperature {
+    font-size: 31px;
+  }
+  .radar-panel-heading {
+    gap: 18px;
+  }
+  .radar-market-footer,
+  .radar-weather-footer {
+    gap: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .radar {
+    padding-top: 57px;
+    padding-bottom: 50px;
+  }
+  .radar-heading {
+    display: block;
+    margin-bottom: 26px;
+  }
+  .radar-heading h2 {
+    font-size: 31px;
+  }
+  .radar-intro {
+    max-width: 100%;
+    margin-top: 19px;
+  }
+  .radar-intro p {
+    font-size: 14px;
+  }
+  .radar-intro time {
+    font-size: 9px;
+    margin-top: 14px;
+  }
+  .radar-tabs {
+    flex-wrap: wrap;
+  }
+  .radar-tabs [role="tab"] {
+    flex: 1 0 50%;
+    padding: 15px 8px;
+    font-size: 11px;
+    min-height: 54px;
+  }
+  .radar-tab-icon {
+    font-size: 17px;
+  }
+  .radar-panel {
+    padding: 22px 16px;
+  }
+  .radar-panel-heading {
+    display: block;
+    margin-bottom: 21px;
+  }
+  .radar-panel-heading h3 {
+    font-size: 21px;
+  }
+  .radar-panel-heading p {
+    font-size: 13px;
+  }
+  .radar-provider {
+    display: inline-block;
+    margin-top: 16px;
+  }
+  .radar-market-state {
+    min-height: 260px;
+    padding: 24px 16px;
+  }
+  .radar-market-state p {
+    font-size: 12px;
+  }
+  .radar-market-footer,
+  .radar-weather-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .radar-market-footer p,
+  .radar-weather-footer p {
+    font-size: 11px;
+  }
+  .radar-market-footer > a,
+  .radar-weather-footer > a,
+  .radar-iron > a {
+    font-size: 12px;
+  }
+  .radar-iron {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+  }
+  .radar-city-field {
+    margin-top: 20px;
+    min-width: 0;
+  }
+  .radar-city-field select {
+    font-size: 16px;
+    width: 100%;
+  }
+  .radar-weather-periods {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .radar-weather-card {
+    padding: 16px;
+  }
+  .radar-weather-condition {
+    font-size: 11px;
+  }
+  .radar-weather-wind {
+    font-size: 10px;
+  }
+  .radar-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding-top: 15px;
+  }
+  .radar-bottom p {
+    font-size: 10px;
+  }
+}
