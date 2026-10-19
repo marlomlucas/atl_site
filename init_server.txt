@@ -1,0 +1,2 @@
+$env:ASTRO_TELEMETRY_DISABLED = "1"
+npx.cmd astro dev --host 127.0.0.1 --port 4321
