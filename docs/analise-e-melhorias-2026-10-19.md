@@ -2,6 +2,8 @@
 
 Data: 19/10/2026, America/Sao_Paulo.
 
+**Registro histórico:** a direção visual vigente é o [modelo 03](modelo-03.md). As referências à paleta deste diagnóstico e da revisão visual posterior foram substituídas pela composição de seções claras e escuras. As recomendações de novas páginas, backend e publicação não integram esta implementação.
+
 Este diagnóstico precede a [revisão visual da mesma data](revisao-visual-2026-10-19.md). As observações sobre tamanhos de fonte e a paleta descrevem o estado anterior; a revisão posterior já ampliou a leitura e ajustou as cores. As demais propostas de estrutura e conteúdo continuam como recomendações.
 
 ## Resultado e limites

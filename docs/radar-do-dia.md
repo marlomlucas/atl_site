@@ -2,6 +2,8 @@
 
 O Radar complementa a página institucional com informações de consulta recorrente. Fica abaixo da apresentação inicial, com acesso direto pelo menu; serviços e contato continuam fazendo parte da mesma página.
 
+Na composição atual do [modelo 03](modelo-03.md), a seção e a interface externa do Radar usam o tema claro: abas, controles, mensagens de carregamento, falha e previsão seguem os tokens de `.theme-light`. O widget TradingView pode manter seu painel escuro dentro de um contêiner próprio. Não se modifica o conteúdo dos iframes de terceiros. A mudança visual preserva fontes, unidades, horários, atribuições, cache e carregamento mediante interação; não confirma a disponibilidade dos dados ao vivo.
+
 ## Conteúdo e unidades
 
 | Painel               | Conteúdo                                             | Referência                                                                        |

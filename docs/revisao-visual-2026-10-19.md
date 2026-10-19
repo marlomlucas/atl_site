@@ -2,6 +2,8 @@
 
 Data: 19/10/2026, America/Sao_Paulo.
 
+**Registro histórico:** a direção de paleta predominantemente escura descrita neste documento foi substituída pelo [modelo 03](modelo-03.md), aprovado posteriormente em 19/10/2026. Os valores, observações e resultados abaixo pertencem à revisão anterior; não representam verificações da implementação do modelo 03.
+
 ## Direção
 
 Manter a identidade da referência enviada: grafite, ATL em dourado e símbolo de código verde. A revisão torna os fundos mais neutros e organiza a função de cada acento. As mudanças se baseiam no site da ATL e nos cálculos de contraste; a comparação visual dos seis sites indicados continua pendente de acesso, conforme o relatório de pesquisa.

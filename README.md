@@ -1,31 +1,39 @@
 # ATL Soluções em Tecnologia — site institucional
 
-Site da ATL Soluções em Tecnologia, fundada por Marlom C. Lucas, voltado a sistemas sob medida, sites, aplicativos e consultoria de TI. A identidade parte da referência enviada pelo fundador: grafite, dourado e símbolo de código verde.
+Site da ATL Soluções em Tecnologia, fundada por Marlom C. Lucas, voltado a sistemas sob medida, sites, aplicativos e consultoria de TI. O **modelo 03** combina seções claras e escuras, com ATL em dourado e símbolo de código verde. A direção atual está documentada em [modelo 03](docs/modelo-03.md).
 
 ## Desenvolvimento
 
-Requer Node.js 24 LTS (ou versão compatível com `engines` no `package.json`) e npm. Use o checkout existente; as tarefas de nuvem já são isoladas, sem necessidade de criar um Git worktree.
+Requer Node.js 24 LTS (ou versão compatível com `engines` no `package.json`) e npm. No Windows, com PowerShell:
 
-```sh
-cd /workspace/atl_site
-npm ci
-npm run dev
+```powershell
+Set-Location D:\atl_site
+npm.cmd run dev
 ```
 
-O servidor usa a porta 4321 por padrão. A pasta pode variar fora do ambiente de nuvem. O cache de npm fica em `../.cache/npm`, fora do checkout. A telemetria do Astro está desativada nos comandos para funcionar também em ambientes com diretório pessoal somente para leitura.
+Se `node_modules` estiver ausente ou precisar ser sincronizado com o `package-lock.json`, execute `npm.cmd ci` antes de iniciar. Não é necessário reinstalar as dependências a cada execução.
 
-```sh
-npm run check       # Astro e TypeScript
-npm run build       # checagem e geração estática em dist/
-npm run preview     # servir o build para validação
-npm run test:e2e    # testes funcionais e de acessibilidade
+O servidor usa a porta 4321 por padrão. O cache de npm fica em `../.cache/npm`, fora do checkout. Os comandos usam um pequeno script Node para definir a telemetria do Astro sem depender de sintaxe de shell específica do Linux.
+
+```powershell
+npm.cmd run check       # Astro e TypeScript
+npm.cmd run build       # checagem e geração estática em dist/
+npm.cmd run test:e2e    # testes funcionais e de acessibilidade
+npm.cmd run preview     # servir o build para validação
 ```
 
-Os testes usam o Chromium do ambiente em `/usr/bin/chromium`. Em outra máquina, defina `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH` com o caminho do executável instalado. O Playwright inicia o servidor automaticamente quando necessário. Não é preciso manter o processo vivo entre tarefas.
+Os mesmos scripts funcionam com `npm run …` em outros sistemas. Os testes preferem o Chromium gerenciado pelo Playwright, quando disponível. Como alternativa, no Windows procuram uma instalação de Chrome ou Edge. Para escolher outro executável instalado, defina `PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH`:
+
+```powershell
+$env:PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH = 'C:\caminho\para\chrome.exe'
+npm.cmd run test:e2e
+```
+
+O Playwright inicia o servidor automaticamente quando necessário. As verificações com respostas simuladas não confirmam os dados ao vivo do Radar. Não é preciso manter o processo vivo entre tarefas.
 
 ## Tecnologias e decisões
 
-- **Astro + TypeScript:** HTML estático e JavaScript apenas para menu e resumo de projeto. Uma página institucional não precisa enviar um framework de aplicação inteiro ao visitante.
+- **Astro + TypeScript:** HTML estático e JavaScript para menu, resumo de projeto e Radar. Uma página institucional não precisa enviar um framework de aplicação inteiro ao visitante.
 - **CSS responsivo:** layout fluido, pontos de quebra para celular/tablet/desktop, foco visível e respeito a movimento reduzido.
 - **Manrope + Inter:** fontes variáveis locais, somente o subconjunto latino. Não há solicitações ao Google Fonts durante a navegação.
 - **Playwright + axe:** fluxo de navegação, menu, perguntas frequentes, diálogo, download e verificações automáticas de acessibilidade.
@@ -35,7 +43,7 @@ Os testes usam o Chromium do ambiente em `/usr/bin/chromium`. Em outra máquina,
 
 A página inicial inclui moedas (USD/EUR/CLP em BRL), criptomoedas em USD, commodities/metais e previsão do tempo. Porto Alegre (RS) é a cidade padrão, com opção de troca. Mercados usam widgets TradingView; o clima usa dados atribuídos a MET Norway (CC BY 4.0), com data de emissão e cache. Minério de ferro tem consulta direta na SGX, sem preço incorporado confirmado.
 
-Veja [fontes, unidades e limites da integração](docs/radar-do-dia.md). O acesso externo foi bloqueado nesta execução: a interface e os tratamentos de falha são testados com respostas simuladas, mas a disponibilidade dos símbolos e os dados ao vivo ainda precisam de validação após aplicar as regras de rede e em uma origem pública permitida. Não há dados financeiros fictícios ou previsão fixa no HTML do site.
+Veja [fontes, unidades e limites da integração](docs/radar-do-dia.md). Há registros de bloqueio do acesso externo nas execuções anteriores: os testes da interface e dos tratamentos de falha usam respostas simuladas, e a disponibilidade dos símbolos e os dados ao vivo ainda precisam de validação em uma origem pública permitida. Não há dados financeiros fictícios ou previsão fixa no HTML do site.
 
 ## Contato comercial
 
@@ -63,7 +71,8 @@ A variável é pública e incluída no HTML; nunca use uma senha ou chave nela. 
 - Visual conceitual do bloco inicial: `src/components/HeroVisual.astro`; não representa um produto entregue.
 - Interações locais: `src/scripts/site.ts`.
 - Fundamentação de cores, fontes e posicionamento: [direção criativa](docs/direcao-criativa.md).
-- Paleta e escala tipográfica atualizadas: [revisão visual](docs/revisao-visual-2026-10-19.md).
+- Paleta híbrida e organização visual atuais: [modelo 03](docs/modelo-03.md).
+- Histórico da paleta e da escala tipográfica anteriores: [revisão visual](docs/revisao-visual-2026-10-19.md).
 
 A marca vetorial é uma interpretação simplificada da imagem de referência, não o arquivo-mestre original. A experiência de 20 anos é atribuída ao fundador. Não foram inventados clientes, depoimentos ou números de projetos.
 

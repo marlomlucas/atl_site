@@ -34,52 +34,38 @@ Evitar promessas genéricas de transformação e diferenciais que qualquer empre
 
 ## Cores e identidade
 
-Revisão aplicada em 19/10/2026: fundos mais neutros, verde de ação suavizado e hierarquia de leitura ampliada. Veja [a revisão visual](revisao-visual-2026-10-19.md) para os critérios e a comparação com a versão anterior.
+**Direção atual: modelo 03**, aprovado em 19/10/2026, America/Sao_Paulo. A página combina seções claras e escuras para ampliar o conforto de leitura, preservando a marca ATL em dourado e o símbolo de código verde. Veja a [especificação completa do modelo 03](modelo-03.md), com paletas, escopos CSS e critérios de contraste.
 
-A imagem da marca combina fundo escuro, letras ATL douradas e símbolo de código verde. Preservar essa relação com uma aplicação mais limpa e reproduzível: superfícies grafite, tipografia clara, dourado ligado à assinatura e verde ligado às ações e destaques.
+A direção predominantemente escura anterior foi substituída no quesito paleta. Seus valores, cálculos e resultados permanecem no [registro histórico da revisão visual](revisao-visual-2026-10-19.md); não devem orientar novas cores nem ser lidos como validação do modelo atual.
 
-O grafite permite destacar o dourado e o verde; o dourado pode sugerir cuidado e valor; o verde cria um acento tecnológico associado à ação. Essas associações dependem do contexto e da cultura, e não são garantias psicológicas de confiança ou conversão. A coerência da composição e a clareza do conteúdo terão mais peso do que alegações universais sobre cores.
+| Aplicação | Tema |
+| --- | --- |
+| Cabeçalho, navegação, hero, processo, cartão da experiência do fundador, painel de contato e rodapé | Escuro |
+| Faixa de apresentação, interface externa do Radar, serviços, empresa/fundador, FAQ e briefing | Claro |
 
-| Papel                     | Cor       |
-| ------------------------- | --------- |
-| Fundo principal           | `#101314` |
-| Superfícies e painéis     | `#191D1F` |
-| Texto principal           | `#F4F1E9` |
-| Texto secundário          | `#B4BCB8` |
-| Dourado da marca          | `#E0BC73` |
-| Verde de destaque         | `#A9D283` |
-| Texto sobre botões claros | `#132016` |
-| Borda de controles        | `#6F8077` |
+| Papel | Escuro | Claro |
+| --- | --- | --- |
+| Fundo principal | `#1B2723` | `#F2F5EF` |
+| Superfície/cartões | `#2D4138` | `#FFFFFF` |
+| Texto principal | `#F4F7EE` | `#18392B` |
+| Texto secundário | `#CBD6CD` | `#4D6658` |
+| Dourado/bronze | `#E8C780` | `#795A18` |
+| Verde de ação | `#4FC58C` | `#166B45` |
+| Texto sobre botão verde | `#0F2A1B` | `#FFFFFF` |
+| Borda de controles | `#95AB9C` | `#688773` |
 
-Manter o fundo escuro predominante e os acentos pontuais. Evitar brilho excessivo, degradês em textos corridos e barras com várias cores competindo com a assinatura ATL. A marca pode ter uma versão vetorial inspirada no anexo para boa nitidez em tamanhos pequenos; o arquivo original deve ser preservado quando estiver disponível.
+O dourado destaca a identidade e os elementos importantes; o verde identifica ações, links e elementos de tecnologia. As classes `.theme-light` e `.theme-dark` definem tokens locais para textos, superfícies, botões e foco. Áreas claras podem usar `#E7EFE5` em faixas e `#EEF5EB` em cartões secundários. O contato admite um gradiente discreto entre `#1B3226` e `#2D4A38`. Evitar excesso de gradientes, brilho e transparências.
 
-### Contraste calculado localmente
+Texto comum deve atingir 4,5:1; textos grandes e elementos de interface aplicáveis, 3:1. Nas superfícies escuras, botões verdes claros ou dourados recebem texto escuro. Nas áreas claras, botões verdes escuros recebem texto branco, e textos dourados usam o bronze `#795A18`. Dourado claro sobre branco e branco sobre verde claro não oferecem contraste suficiente. O foco precisa continuar visível em cada tema, inclusive em cartões de tema diferente da seção. As divisórias decorativas não substituem bordas de controles.
 
-Valores calculados pela fórmula de luminância relativa sRGB usada nas WCAG, considerando as cores sólidas e opacas. Não constituem uma auditoria de toda a interface.
-
-| Combinação                    | Contraste                    |
-| ----------------------------- | ---------------------------- |
-| Texto principal / fundo       | 16,53:1                      |
-| Texto secundário / fundo      | 9,62:1                       |
-| Texto secundário / painel     | 8,75:1                       |
-| Dourado / fundo               | 10,32:1                      |
-| Verde / fundo                 | 10,87:1                      |
-| Texto de botão / verde        | 9,82:1                       |
-| Texto de botão / dourado      | 9,32:1                       |
-| Texto principal claro / verde | **1,52:1 — insuficiente**    |
-| Painel / fundo                | **1,10:1 — diferença sutil** |
-| Borda de controle / painel    | 4,07:1                       |
-
-Referências normativas sugeridas: [WCAG 2.2 — contraste de texto](https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html) e [contraste de componentes](https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html). O acesso externo a essas páginas também foi bloqueado nesta sessão.
-
-Para nível AA, texto comum exige ao menos 4,5:1; texto grande, 3:1. Componentes e estados necessários para uso devem atingir 3:1 em relação às cores adjacentes, conforme o contexto. O contraste discreto entre painel e fundo funciona para agrupamento decorativo, mas não deve ser o único indício visual de um controle. Usar bordas, foco visível, rótulos e espaçamento quando necessários. Botões verdes ou dourados devem receber texto escuro. Validar separadamente transparências, estados de hover, foco, desabilitado e sobreposições.
+O Radar tem interface externa clara e pode conter o painel incorporado do TradingView em tema escuro. Os iframes pertencem ao provedor e não devem ter o conteúdo interno alterado. As integrações reais ainda dependem da validação descrita na [documentação do Radar](radar-do-dia.md).
 
 ## Tipografia
 
 **Manrope para títulos e Inter para corpo e controles**, hospedadas junto da aplicação. Manrope oferece presença geométrica nos títulos; Inter mantém boa leitura em parágrafos, menus e formulários. Ambas têm desenho contemporâneo sem depender de uma aparência de terminal.
 
 - Usar poucas variações de peso e carregar apenas as necessárias.
-- Usar texto corrido em 16 px, controles em 14 px e metadados úteis em 12 px, com entrelinha confortável e parágrafos com largura controlada. A assinatura compacta e os detalhes da ilustração têm exceções; esses detalhes decorativos não carregam informações essenciais.
+- Usar texto corrido e controles principais em 16 px, navegação em 14 px e metadados úteis em 13 px, com entrelinha confortável e parágrafos com largura controlada. A assinatura compacta e os detalhes da ilustração têm exceções; esses detalhes decorativos não carregam informações essenciais.
 - Evitar caixa alta em frases longas; pequenas etiquetas podem usar espaçamento moderado.
 - Usar números e termos técnicos com parcimônia. Fonte monoespaçada pode aparecer em pequenos detalhes, sem dominar o site empresarial.
 - Hospedar arquivos localmente reduz dependência de serviços externos na navegação; preservar as licenças distribuídas com os pacotes.

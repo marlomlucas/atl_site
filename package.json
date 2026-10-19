@@ -7,10 +7,10 @@
     "node": ">=22.22.0"
   },
   "scripts": {
-    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev --host 0.0.0.0",
-    "build": "ASTRO_TELEMETRY_DISABLED=1 astro check && ASTRO_TELEMETRY_DISABLED=1 astro build",
-    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview --host 0.0.0.0",
-    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "dev": "node scripts/astro.mjs dev --host 0.0.0.0",
+    "build": "node scripts/astro.mjs check && node scripts/astro.mjs build",
+    "preview": "node scripts/astro.mjs preview --host 0.0.0.0",
+    "check": "node scripts/astro.mjs check",
     "test:e2e": "playwright test"
   },
   "dependencies": {
