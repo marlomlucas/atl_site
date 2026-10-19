@@ -5,6 +5,7 @@ interface Props {
   small?: boolean;
 }
 const { small = false } = Astro.props;
+const symbolGradient = small ? "atl-symbol-footer" : "atl-symbol-header";
 ---
 
 <span class:list={["brand", { "brand--small": small }]}>
@@ -16,9 +17,22 @@ const { small = false } = Astro.props;
     fill="none"
     aria-hidden="true"
   >
+    <defs>
+      <linearGradient
+        id={symbolGradient}
+        x1="0"
+        y1="36"
+        x2="40"
+        y2="0"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="#168447" />
+        <stop offset="1" stop-color="#A9D283" />
+      </linearGradient>
+    </defs>
     <path
       d="m11 10-9 8 9 8M29 10l9 8-9 8M24 3l-9 30"
-      stroke="currentColor"
+      stroke={`url(#${symbolGradient})`}
       stroke-width="3.2"
       stroke-linecap="square"
       stroke-linejoin="miter"

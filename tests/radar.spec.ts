@@ -247,7 +247,7 @@ test('troca de cidade persiste e cache evita consultas repetidas ao voltar ou re
   expect(locations).toHaveLength(2);
 });
 
-for (const width of [360, 390, 768, 1440]) {
+for (const width of [320, 360, 390, 768, 960, 1024, 1440]) {
   test(`radar cabe em ${width}px em todos os painéis de mercado e tempo`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 900 });
     let mountWidget = false;

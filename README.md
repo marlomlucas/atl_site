@@ -63,6 +63,7 @@ A variável é pública e incluída no HTML; nunca use uma senha ou chave nela. 
 - Visual conceitual do bloco inicial: `src/components/HeroVisual.astro`; não representa um produto entregue.
 - Interações locais: `src/scripts/site.ts`.
 - Fundamentação de cores, fontes e posicionamento: [direção criativa](docs/direcao-criativa.md).
+- Paleta e escala tipográfica atualizadas: [revisão visual](docs/revisao-visual-2026-10-19.md).
 
 A marca vetorial é uma interpretação simplificada da imagem de referência, não o arquivo-mestre original. A experiência de 20 anos é atribuída ao fundador. Não foram inventados clientes, depoimentos ou números de projetos.
 

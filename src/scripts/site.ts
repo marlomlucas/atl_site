@@ -33,7 +33,7 @@ document.addEventListener("click", (event) => {
   )
     closeMenu();
 });
-matchMedia("(min-width: 861px)").addEventListener("change", closeMenu);
+matchMedia("(min-width: 961px)").addEventListener("change", closeMenu);
 
 const projectDialog =
   document.querySelector<HTMLDialogElement>("#project-dialog");

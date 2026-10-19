@@ -63,13 +63,13 @@ test('visitante encontra o fundador e os canais de contato da ATL', async ({ pag
   await expect(page.locator('#sobre').getByRole('link', { name: /GitHub/i })).toHaveAttribute('href', 'https://github.com/marlomlucas');
 });
 
-for (const width of [360, 390, 768, 1440]) {
+for (const width of [320, 360, 390, 768, 960, 1024, 1440]) {
   test(`layout permanece dentro da tela de ${width}px, inclusive menu e formulário`, async ({ page }, testInfo) => {
     await page.setViewportSize({ width, height: 900 });
     await page.goto('/');
     await page.evaluate(() => document.fonts.ready);
     await expectNoOverflow(page);
-    if (width < 861) {
+    if (width <= 960) {
       await page.getByRole('button', { name: 'Abrir menu' }).click();
       await expectNoOverflow(page);
       await page.keyboard.press('Escape');
@@ -105,7 +105,7 @@ test('menu móvel responde a clique, navegação, Escape e mudança para desktop
   await expect(nav).toBeHidden();
   await expect(toggle).toBeFocused();
   await toggle.click();
-  await page.locator('.hero-description').click();
+  await page.locator('.hero-note').click();
   await expect(nav).toBeHidden();
   await toggle.click();
   await toggle.click();
